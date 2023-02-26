@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/02/26 13:54:42 by tayou            ###   ########.fr       */
+/*   Updated: 2023/02/26 17:17:50 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "./libft/libft.h"
+
+long long ft_atoi_longlong(const char *str);
 
 #endif

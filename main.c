@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/02/26 16:19:45 by tayou            ###   ########.fr       */
+/*   Updated: 2023/02/26 17:26:16 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -36,7 +36,7 @@ int	ft_isspace(int c)
 		return (0);
 }
 
-void	pass_isspace(char *str, int *i)
+void	pass_space(char *str, int *i)
 {
 	while (ft_isspace(str[*i]) == 1)
 		(*i)++;
@@ -61,7 +61,7 @@ int	get_array_count(char **argv)
 		j = 0;
 		while (argv[i][j] != '\0')
 		{
-			pass_isspace(argv[i], &j);
+			pass_space(argv[i], &j);
 			pass_notspace(argv[i], &j);
 			array_count++;
 		}
@@ -90,7 +90,7 @@ int	get_array_size(char *str, int *i)
 	int	end_point;
 
 	start_point = *i;
-	pass_isspace(str, i);
+	pass_space(str, i);
 	pass_notspace(str, i);
 	end_point = *i - 1;
 	size = end_point - start_point + 1;
@@ -140,34 +140,103 @@ char	**malloc_array(char **array, char **argv)
 	return (array);
 }
 
+char	**get_number_array(char **argv)
+{
+	char	**number_array;
+	int		array_count;
+
+	array_count = get_array_count(argv);
+	if (array_count == 0)
+		return (0);
+	number_array = (char **) malloc((sizeof(char *) * array_count) + 1);
+	if (number_array == 0)
+		return (0);
+	number_array = malloc_array(number_array, argv);
+	number_array[array_count] = (void *) 0;
+	return (number_array);
+}
+
+void	pass_sign(char *str, int *i)
+{
+	if (str[*i] == '+' || str[*i] == '-')
+		(*i)++;
+}
+
+int	check_if_number(char **str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (str[i] != (void *) 0)
+	{
+		j = 0;
+		pass_space(str[i], &j);
+		pass_sign(str[i], &j);
+		while (str[i][j] != '\0')
+		{
+			if (ft_isdigit == 1)
+				j++;
+			else
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	check_if_int(char **str)
+{
+	long long	number;
+	long long	int_max;
+	long long	int_min;
+	int			i;
+
+	int_max = 2147483647;
+	int_min = –2147483648;
+	i = 0;
+	while (str[i] != (void *) 0)
+	{
+		number = ft_atoi_longlong(str[i]);
+		if (number < int_min || number > int_max)
+			return (0);
+		else
+			i++;
+	}
+}
+
+int	check_error(char **str)
+{
+	if (check_if_number(str) == 0)
+		return (0);
+	if (check_if_int(str) == 0)
+		return (0);
+}
+
 int	main(int argc, char *argv[])
 {
-	int		array_count;
-	char	**array;
+	char	**number_array;
 	int		i;
 
 	if (argc <= 1)
 		return (0);
-	array_count = get_array_count(argv);
-	if (array_count == 0)
+	number_array = get_number_array(argv);
+	if (number_array == 0)
 		return (0);
-	array = (char **) malloc((sizeof(char *) * array_count) + 1);
-	if (array == 0)
-		return (0);
-	array = malloc_array(array, argv);
-	array[array_count] = (void *) 0;
-	i = 0;
-	while (array[i] != (void *) 0)
+	if (check_error(number_array) == 0)
 	{
-		ft_printf("array[%d]: %s\n", i, array[i]);
+		ft_printf("Error\n");
+		return (0);
+	}
+	i = 0;
+	while (number_array[i] != (void *) 0)
+	{
+		ft_printf("array[%d]: %s\n", i, number_array[i]);
 		i++;
 	}
 	return (0);
 }
 	
-
-
-
 /*
 t_list	*get_list(int argc, char **argv)
 {
