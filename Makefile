@@ -7,13 +7,14 @@ AR = ar
 ARFLAGS = -rcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
-PUSH_SWAP = push_swap.a
-SRCS = 
+SRCS = main.c 
 		
 OBJS = $(SRCS:.c=.o)
 
-all : $(PUSH_SWAP)
-	$(CC) $(CFLAGS) -o $(NAME) $^ main.c
+all : $(NAME) 
+
+$(NAME) : $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $^
 
 clean : 
 	make -C $(LIBFT_DIR) clean
@@ -25,14 +26,10 @@ fclean : clean
 
 re : fclean all
 
-$(PUSH_SWAP) : $(LIBFT) $(OBJS)
-	cp $(LIBFT) $(NAME)
-	$(AR) $(ARFLAGS) $@ $^
-
-$(LIBFT) :
+$(LIBFT) : 
 	make -C $(LIBFT_DIR) all
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $^
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY: all clean fclean re bonus libft
