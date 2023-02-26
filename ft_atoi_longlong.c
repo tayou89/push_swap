@@ -6,14 +6,14 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:16:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/02/26 17:17:19 by tayou            ###   ########.fr       */
+/*   Updated: 2023/02/26 17:34:48 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "libft.h"
+#include "push_swap.h"
 
-long long	get_number(const char *str, int *i, long long number)
+static long long	get_number(const char *str, int *i, long long number)
 {
 	while (str[*i] >= '0' && str[*i] <= '9')
 	{
@@ -23,7 +23,7 @@ long long	get_number(const char *str, int *i, long long number)
 	return (number);
 }
 
-int	check_if_number(const char *str, int *i)
+static int	check_if_number(const char *str, int *i)
 {
 	if (str[*i] >= '0' && str[*i] <= '9')
 		return (1);
@@ -31,7 +31,7 @@ int	check_if_number(const char *str, int *i)
 		return (0);
 }
 
-int	check_sign(const char *str, int *i)
+static int	check_sign(const char *str, int *i)
 {
 	if (str[*i] == '-')
 	{
@@ -47,7 +47,7 @@ int	check_sign(const char *str, int *i)
 		return (1);
 }
 
-void	check_whitespace(const char *str, int *i)
+static void	check_whitespace(const char *str, int *i)
 {
 	while ((str[*i] >= 9 && str[*i] <= 13) || str[*i] == 32)
 		(*i)++;

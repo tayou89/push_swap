@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/02/26 17:26:16 by tayou            ###   ########.fr       */
+/*   Updated: 2023/02/26 17:33:05 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -175,7 +175,7 @@ int	check_if_number(char **str)
 		pass_sign(str[i], &j);
 		while (str[i][j] != '\0')
 		{
-			if (ft_isdigit == 1)
+			if (ft_isdigit(str[i][j]) == 1)
 				j++;
 			else
 				return (0);
@@ -193,7 +193,7 @@ int	check_if_int(char **str)
 	int			i;
 
 	int_max = 2147483647;
-	int_min = –2147483648;
+	int_min = -2147483648;
 	i = 0;
 	while (str[i] != (void *) 0)
 	{
@@ -203,6 +203,7 @@ int	check_if_int(char **str)
 		else
 			i++;
 	}
+	return (1);
 }
 
 int	check_error(char **str)
@@ -211,6 +212,7 @@ int	check_error(char **str)
 		return (0);
 	if (check_if_int(str) == 0)
 		return (0);
+	return (1);
 }
 
 int	main(int argc, char *argv[])

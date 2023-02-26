@@ -7,7 +7,8 @@ AR = ar
 ARFLAGS = -rcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
-SRCS = main.c 
+SRCS = main.c \
+	   ft_atoi_longlong.c
 		
 OBJS = $(SRCS:.c=.o)
 
