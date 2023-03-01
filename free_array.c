@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/01 15:22:27 by tayou            ###   ########.fr       */
+/*   Created: 2023/03/01 15:10:42 by tayou             #+#    #+#             */
+/*   Updated: 2023/03/01 15:10:53 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+void	free_array(char **array)
+{
+	int	i;
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-char	**get_number_array(char **argv);
-
-long long	ft_atoi_longlong(const char *str);
-int			ft_isspace(int c);
-void		free_array(char **array)
-
-#endif
+	i = 0;
+	while (array[i] != (void *) 0)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}

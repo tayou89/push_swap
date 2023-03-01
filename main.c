@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/02/26 17:33:05 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:36:02 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -27,134 +27,6 @@
 */
 
 #include "push_swap.h"
-
-int	ft_isspace(int c)
-{
-	if (c == ' ')
-		return (1);
-	else
-		return (0);
-}
-
-void	pass_space(char *str, int *i)
-{
-	while (ft_isspace(str[*i]) == 1)
-		(*i)++;
-}
-
-void	pass_notspace(char *str, int *i)
-{
-	while (ft_isspace(str[*i]) == 0 && str[*i] != '\0')
-		(*i)++;
-}
-
-int	get_array_count(char **argv)
-{
-	int	i;
-	int	j;
-	int	array_count;
-
-	array_count = 0;
-	i = 1;
-	while (argv[i] != (void *) 0)
-	{
-		j = 0;
-		while (argv[i][j] != '\0')
-		{
-			pass_space(argv[i], &j);
-			pass_notspace(argv[i], &j);
-			array_count++;
-		}
-		i++;
-	}
-	return (array_count);
-}
-
-void	free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i] != (void *) 0)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
-int	get_array_size(char *str, int *i)
-{
-	int	size;
-	int	start_point;
-	int	end_point;
-
-	start_point = *i;
-	pass_space(str, i);
-	pass_notspace(str, i);
-	end_point = *i - 1;
-	size = end_point - start_point + 1;
-	return (size);
-}
-
-char	*fill_array(char *array, char *str, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		array[i] = str[i];
-		i++;
-	}
-	array[i] = '\0';
-	return (array);
-}
-
-char	**malloc_array(char **array, char **argv)
-{
-	int	i;
-	int	j;
-	int	k;
-	int	size;
-
-	k = 0;
-	i = 1;
-	while (argv[i] != (void *) 0)
-	{
-		j = 0;
-		while (argv[i][j] != '\0')
-		{
-			size = get_array_size(argv[i], &j);
-			array[k] = (char *) malloc(sizeof(char) * size + 1);
-			if (array[k] == 0)
-			{
-				free_array(array);
-				return (0);
-			}
-			array[k] = fill_array(array[k], &argv[i][j-size], size);
-			k++;
-		}
-		i++;
-	}
-	return (array);
-}
-
-char	**get_number_array(char **argv)
-{
-	char	**number_array;
-	int		array_count;
-
-	array_count = get_array_count(argv);
-	if (array_count == 0)
-		return (0);
-	number_array = (char **) malloc((sizeof(char *) * array_count) + 1);
-	if (number_array == 0)
-		return (0);
-	number_array = malloc_array(number_array, argv);
-	number_array[array_count] = (void *) 0;
-	return (number_array);
-}
 
 void	pass_sign(char *str, int *i)
 {
@@ -206,13 +78,68 @@ int	check_if_int(char **str)
 	return (1);
 }
 
+int	get_number_count(char **str)
+{
+	int	number_count;
+	int	i;
+
+	i = 0;
+	while (str[i] != (void *) 0)
+		i++;
+	number_count = i;
+	return (number_count);
+}
+
+int	*fill_number_array(int *number_array, char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != (void *) 0)
+	{
+		number_array[i] = ft_atoi(str[i]);
+		i++;
+	}
+	return (number_array);
+}
+
+int	check_if_duplicate(char **str)
+{
+	int	*number_array;
+	int	array_count;
+	int	i;
+
+	number_count = get_number_count(str);
+	number_array = (int *) malloc(sizeof(int) * number_count);
+	if (number_array == 0)
+		return (0);
+	number_array = fill_number_array(number_array, str);
+	i = 0;
+	while (i + 1 < number_count)
+	{
+		j = i + 1;
+		while (number_array[j] != (void *) 0)
+		{
+			if (number_array[i] == number_array[j])
+				return (0);
+			else
+				j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_error(char **str)
 {
-	if (check_if_number(str) == 0)
+	if (check_if_number(str) == 0 || check_if_int(str) == 0 || 
+		check_if_dulplicate(str) == 0)
+	{
+		ft_printf("Error\n");
 		return (0);
-	if (check_if_int(str) == 0)
-		return (0);
-	return (1);
+	}
+	else
+		return (1);
 }
 
 int	main(int argc, char *argv[])
@@ -226,10 +153,7 @@ int	main(int argc, char *argv[])
 	if (number_array == 0)
 		return (0);
 	if (check_error(number_array) == 0)
-	{
-		ft_printf("Error\n");
 		return (0);
-	}
 	i = 0;
 	while (number_array[i] != (void *) 0)
 	{
