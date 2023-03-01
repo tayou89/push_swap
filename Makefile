@@ -29,7 +29,7 @@ fclean : clean
 re : fclean all
 
 $(LIBFT) : 
-	make -C $(LIBFT_DIR) all
+	make bonus -C $(LIBFT_DIR) all
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
