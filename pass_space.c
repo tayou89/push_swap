@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   pass_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/03 13:56:33 by tayou            ###   ########.fr       */
+/*   Created: 2023/03/03 13:55:10 by tayou             #+#    #+#             */
+/*   Updated: 2023/03/03 14:04:49 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-
-char		**get_number_array(char **argv);
-
-long long	ft_atoi_longlong(const char *str);
-int			ft_isspace(int c);
-void		free_array(char **array);
-void		pass_space(char *str, int *i);
-
-#endif
+void	pass_space(char *str, int *i)
+{
+	while (ft_isspace(str[*i]) == 1)
+		(*i)++;
+}

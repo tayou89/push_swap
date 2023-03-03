@@ -6,9 +6,11 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:10:42 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/01 15:10:53 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/03 14:04:02 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 void	free_array(char **array)
 {

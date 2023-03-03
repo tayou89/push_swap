@@ -6,17 +6,11 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:59:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/01 15:24:42 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/03 13:57:20 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	pass_space(char *str, int *i)
-{
-	while (ft_isspace(str[*i]) == 1)
-		(*i)++;
-}
 
 static void	pass_notspace(char *str, int *i)
 {

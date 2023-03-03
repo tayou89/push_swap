@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/01 15:36:02 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/03 14:05:46 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -34,7 +34,7 @@ void	pass_sign(char *str, int *i)
 		(*i)++;
 }
 
-int	check_if_number(char **str)
+static int	check_if_number(char **str)
 {
 	int	i;
 	int	j;
@@ -106,8 +106,9 @@ int	*fill_number_array(int *number_array, char **str)
 int	check_if_duplicate(char **str)
 {
 	int	*number_array;
-	int	array_count;
+	int	number_count;
 	int	i;
+	int	j;
 
 	number_count = get_number_count(str);
 	number_array = (int *) malloc(sizeof(int) * number_count);
@@ -118,7 +119,7 @@ int	check_if_duplicate(char **str)
 	while (i + 1 < number_count)
 	{
 		j = i + 1;
-		while (number_array[j] != (void *) 0)
+		while (j <= number_count)
 		{
 			if (number_array[i] == number_array[j])
 				return (0);
@@ -133,7 +134,7 @@ int	check_if_duplicate(char **str)
 int	check_error(char **str)
 {
 	if (check_if_number(str) == 0 || check_if_int(str) == 0 || 
-		check_if_dulplicate(str) == 0)
+		check_if_duplicate(str) == 0)
 	{
 		ft_printf("Error\n");
 		return (0);

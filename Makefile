@@ -10,6 +10,7 @@ LIBFT_DIR = ./libft
 SRCS = main.c \
 	   get_number_array.c \
 	   ft_atoi_longlong.c ft_isspace.c free_array.c \
+	   pass_space.c
 		
 OBJS = $(SRCS:.c=.o)
 
