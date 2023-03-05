@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/03 14:05:46 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/05 08:55:39 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -105,8 +105,8 @@ int	*fill_number_array(int *number_array, char **str)
 
 int	check_if_duplicate(char **str)
 {
-	int	*number_array;
 	int	number_count;
+	int	*number_array;
 	int	i;
 	int	j;
 
@@ -122,12 +122,15 @@ int	check_if_duplicate(char **str)
 		while (j <= number_count)
 		{
 			if (number_array[i] == number_array[j])
+			{
+				free(number_array);
 				return (0);
-			else
-				j++;
+			}
+			j++;
 		}
 		i++;
 	}
+	free(number_array);
 	return (1);
 }
 
@@ -137,10 +140,26 @@ int	check_error(char **str)
 		check_if_duplicate(str) == 0)
 	{
 		ft_printf("Error\n");
-		return (0);
+		return (1);
 	}
 	else
-		return (1);
+		return (0);
+}
+
+void	check_exception(int argc, char **argv)
+{
+	char	**number_array;
+
+	if (argc <= 1)
+		exit(1);
+	number_array = get_number_array(argv);
+	if (check_error(number_array) == 1)
+	{
+		free_array(number_array);
+		exit(2);
+	}
+	else
+		free_array(number_array);
 }
 
 int	main(int argc, char *argv[])
@@ -148,19 +167,16 @@ int	main(int argc, char *argv[])
 	char	**number_array;
 	int		i;
 
-	if (argc <= 1)
-		return (0);
+	check_exception(argc, argv);
 	number_array = get_number_array(argv);
-	if (number_array == 0)
-		return (0);
-	if (check_error(number_array) == 0)
-		return (0);
 	i = 0;
 	while (number_array[i] != (void *) 0)
 	{
-		ft_printf("array[%d]: %s\n", i, number_array[i]);
+		ft_printf("number_array[%d]: %s\n", i, number_array[i]);
 		i++;
 	}
+	free_array(number_array);
+	system("leaks push_swap");
 	return (0);
 }
 	
