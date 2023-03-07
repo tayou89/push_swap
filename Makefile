@@ -8,9 +8,9 @@ ARFLAGS = -rcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SRCS = main.c \
-	   get_number_array.c \
+	   get_number_array.c check_exception.c \
 	   ft_atoi_longlong.c ft_isspace.c \
-	   free_array.c \
+	   free_array.c free_list.c \
 	   pass_space.c
 		
 OBJS = $(SRCS:.c=.o)

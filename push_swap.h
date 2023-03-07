@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/05 09:31:08 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:14:19 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,25 @@
 
 typedef struct s_node
 {
-	int				data;
+	int				number;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
 
-typedef struct s_list
+typedef struct s_deque
 {
 	t_node	*front;
 	t_node	*back;
-}	t_list;
+}	t_deque;
 
 
 char		**get_number_array(char **argv);
+void		check_exception(int argc, char **argv);
 
 long long	ft_atoi_longlong(const char *str);
 int			ft_isspace(int c);
 void		free_array(char **array);
+void		free_list(t_node *list);
 void		pass_space(char *str, int *i);
 
 #endif

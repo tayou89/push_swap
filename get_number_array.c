@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:59:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/05 08:11:01 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/07 11:47:45 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	**get_number_array(char **argv)
 	array_count = get_array_count(argv);
 	if (array_count == 0)
 		exit(1);
-	number_array = (char **) malloc((sizeof(char *) * array_count) + 1);
+	number_array = (char **) malloc(sizeof(char *) * (array_count + 1));
 	if (number_array == 0)
 		exit(1);
 	number_array = malloc_array(number_array, argv);
