@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:59:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 11:59:21 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/09 15:01:24 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static char	**malloc_array(char **array, char **argv)
 	return (array);
 }
 
-char	**get_number_array(char **argv)
+int	*get_number_array(char **argv)
 {
 	char	**number_array;
 	int		array_count;

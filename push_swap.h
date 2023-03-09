@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 12:23:13 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/09 13:16:43 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_deque
 void		check_exception(int argc, char **argv);
 
 t_node		*initialize_stack_a(char **argv);
-t_node		*initialize_stack_b(t_node *stack_a);
 
 void		operation_swap(t_node *stack);
 void		operation_push(t_node *stack_from, t_node *stack_to);

@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:10:55 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 12:23:42 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/09 13:15:33 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,4 @@ t_node	*initialize_stack_a(char **argv)
 	}
 	free_array(number_array);
 	return (stack_a);
-}
-
-t_node	*initialize_stack_b(t_node *stack_a)
-{
-	t_node	*stack_b;
-
-	stack_b = (t_node *) malloc(sizeof(t_node));
-	if (stack_b == (void *) 0)
-	{
-		free_list(stack_a);
-		exit(1);
-	}
-	return (stack_b);
 }

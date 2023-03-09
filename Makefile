@@ -8,7 +8,7 @@ ARFLAGS = -rcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SRCS = push_swap.c \
-	   check_exception.c initialize_stack.c \
+	   check_exception.c initialize_stack_a.c \
 	   operations.c \
 	   control_node.c \
 	   get_number_array.c ft_atoll.c \
