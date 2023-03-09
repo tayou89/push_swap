@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_longlong.c                                 :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 17:16:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/05 07:25:10 by tayou            ###   ########.fr       */
+/*   Created: 2023/03/09 12:00:02 by tayou             #+#    #+#             */
+/*   Updated: 2023/03/09 12:00:05 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -53,7 +52,7 @@ static void	check_whitespace(const char *str, int *i)
 		(*i)++;
 }
 
-long long	ft_atoi_longlong(const char *str)
+long long	ft_atoll(const char *str)
 {
 	int			i;
 	int			sign;

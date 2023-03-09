@@ -6,43 +6,13 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/07 14:27:54 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/09 12:25:01 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*get_new_node(int number)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *) malloc(sizeof(t_node));
-	if (new_node == 0)
-		return (0);
-	new_node->number = number;
-	new_node->prev = (void *) 0;
-	new_node->next = (void *) 0;
-	return (new_node);
-}
-
-t_node	*add_node_back(t_node **stack, t_node *new_node)
-{
-	t_node	*copy_head;
-
-	if (stack == (void *) 0)
-	{
-		*stack = new_node;
-		return (*stack);
-	}
-	copy_head = *stack;
-	while (copy_head->next != (void *) 0)
-		copy_head = copy_head->next;
-	copy_head->next = new_node;
-	new_node->prev = copy_head;
-	return (*stack);
-}
-
-t_node	*get_stack_a(char **argv)
+t_node	*initialize_stack_a(char **argv)
 {
 	t_node	*stack_a;
 	t_node	*new_node;
@@ -69,14 +39,52 @@ t_node	*get_stack_a(char **argv)
 	return (stack_a);
 }
 
+t_node	*initialize_stack_b(t_node *stack_a)
+{
+	t_node	*stack_b;
+
+	stack_b = (t_node *) malloc(sizeof(t_node));
+	if (stack_b == (void *) 0)
+	{
+		free_list(stack_a);
+		exit(1);
+	}
+	return (stack_b);
+}
+
+t_deque	*get_deque(t_node *stack)
+{
+	t_deque	*first_last;
+
+	first_last = (t_deque *) malloc(sizeof(t_deque));
+	first_last->first = stack;
+	while (stack->next != (void *) 0)
+		stack = stack->next;
+	first_last->last = stack;
+	return (first_last);
+}
+
+t_node	*sort_stack(t_node *stack_a, t_node *stack_b)
+{
+	
+
 int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
+	t_node	*stack_b;
 	t_node	*copy_stack;
+	t_deque	*first_last;
+	t_node	*temp;
 	int		i;
 
 	check_exception(argc, argv);
-	stack_a = get_stack_a(argv);
+	stack_a = initialize_stack_a(argv);
+	stack_b = initialize_stack_b(stack_a);
+	stack_a = sort_stack(stack_a, stack_b);
+	first_last = get_deque(stack_a);
+	temp = stack_a;
+	stack_a = stack_a->next;
+	free(temp);
 	copy_stack = stack_a;
 	i = 1;
 	while (copy_stack != (void *) 0)

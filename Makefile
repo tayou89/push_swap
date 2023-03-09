@@ -7,11 +7,13 @@ AR = ar
 ARFLAGS = -rcs
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
-SRCS = main.c \
-	   get_number_array.c check_exception.c \
-	   ft_atoi_longlong.c ft_isspace.c \
-	   free_array.c free_list.c \
-	   pass_space.c
+SRCS = push_swap.c \
+	   check_exception.c initialize_stack.c \
+	   operations.c \
+	   control_node.c \
+	   get_number_array.c ft_atoll.c \
+	   push_swap_utils.c \
+	   free_functions.c
 		
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/07 14:14:19 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/09 12:23:13 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,35 @@ typedef struct s_node
 
 typedef struct s_deque
 {
-	t_node	*front;
-	t_node	*back;
+	t_node	*first;
+	t_node	*last;
 }	t_deque;
 
 
-char		**get_number_array(char **argv);
 void		check_exception(int argc, char **argv);
 
-long long	ft_atoi_longlong(const char *str);
+t_node		*initialize_stack_a(char **argv);
+t_node		*initialize_stack_b(t_node *stack_a);
+
+void		operation_swap(t_node *stack);
+void		operation_push(t_node *stack_from, t_node *stack_to);
+void		operation_rotate_up(t_node *stack);
+void		operation_rotate_down(t_node *stack);
+
+t_node		*find_node_last(t_node *stack);
+t_node		*get_new_node(int number);
+t_node		*add_node_back(t_node **stack, t_node *new_node);
+t_node		*add_node_front(t_node **stack, t_node *new_node);
+t_node		*del_node_front(t_node *stack);
+
+char		**get_number_array(char **argv);
+long long	ft_atoll(const char *str);
+
 int			ft_isspace(int c);
+void		pass_space(char *str, int *i);
+int			get_stack_size(t_node *stack);
+
 void		free_array(char **array);
 void		free_list(t_node *list);
-void		pass_space(char *str, int *i);
 
 #endif
