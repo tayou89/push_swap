@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/12 08:32:18 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/12 08:48:21 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_node	*get_stack_a(char **argv)
 	char	**string_array;
 	int		*int_array;
 	int		int_count;
-	int		i;
 
 	string_array = get_string_array(argv);
 	int_count = 0;
@@ -111,13 +110,6 @@ t_node	*get_stack_a(char **argv)
 	}
 	int_array = sort_int_array(int_array, int_count);
 	stack_a = simplify_stack_number(stack_a, int_array, int_count);
-	i = 0;
-	while (stack_a != (void *) 0)
-	{
-		ft_printf("stack[%d]->number: %d\n", i, stack_a->number);
-		i++;
-		stack_a = stack_a->next;
-	}
 	free_array(string_array);
 	free(int_array);
 	return (stack_a);
@@ -130,6 +122,7 @@ int	main(int argc, char *argv[])
 	check_exception(argc, argv);
 	stack_a = get_stack_a(argv);
 	
+	free_list(stack_a);
 	system("leaks push_swap");
 	return (0);
 }
