@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 15:01:21 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/12 08:32:18 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,55 +24,17 @@ t_deque	*get_deque(t_node *stack)
 	return (first_last);
 }
 
-int	get_array_size(char **str)
+int	*sort_int_array(int *int_array, int int_count)
 {
-	int	size;
-	int	i;
-
-	i = 0;
-	while (str[i] != (void *) 0)
-		i++;
-	size = i;
-	return (size);
-}
-
-int	*get_int_array(char **argv)
-{
-	char	*number_array;
-	int		*int_array;
-	int		array_size;
-	int		i;
-
-	number_array = get_number_array(argv);
-	array_size = get_array_size(number_array);
-	int_array = (int *) malloc(sizeof(int) * array_size);
-	if (int_array == (void *) 0)
-	{
-		free_array(number_array);
-		exit(1);
-	}
-	i = 0;
-	while (number_array[i] != (void *) 0)
-	{
-		int_array[i] = ft_atoi(number_array[i]);
-		i++;
-	}
-	return (int_array);
-}
-
-int	*sort_int_array(int *int_array)
-{
-	int	array_size;
 	int	i;
 	int	j;
 	int	temp;
 	
-	array_size = (int) (sizeof(int_array) / 4);
 	i = 0;
-	while (i + 1 < array_size)
+	while (i + 1 < int_count)
 	{
 		j = i + 1;
-		while (j < array_size)
+		while (j < int_count)
 		{
 			if (int_array[i] > int_array[j])
 			{
@@ -87,15 +49,79 @@ int	*sort_int_array(int *int_array)
 	return (int_array);
 }
 
+t_node	*get_original_stack_a(int *int_array, int int_count)
+{
+	t_node	*stack_a;
+	t_node	*new_node;
+	int		i;
+
+	stack_a = get_new_node(int_array[0]);
+	if (stack_a == (void *) 0)
+		return ((void *) 0);
+	i = 1;
+	while (i < int_count)
+	{
+		new_node = get_new_node(int_array[i]);
+		if (new_node == (void *) 0)
+		{
+			free_list(stack_a);
+			return ((void *) 0);
+		}
+		stack_a = add_node_back(&stack_a, new_node);
+		i++;
+	}
+	return (stack_a);
+}
+
+t_node	*simplify_stack_number(t_node *stack, int *int_array, int int_count)
+{
+	t_node	*stack_head;
+	int		i;
+
+	stack_head = stack;
+	i = 0;
+	while (i < int_count)
+	{
+		stack = stack_head;
+		while (stack->number != int_array[i])
+				stack = stack->next;
+		stack->number = i;
+		i++;
+	}
+	return (stack_head);
+}
+
 t_node	*get_stack_a(char **argv)
 {
-	int	*int_array;
+	t_node	*stack_a;
+	char	**string_array;
+	int		*int_array;
+	int		int_count;
+	int		i;
 
-	int_array = get_int_array(argv);
-	int_array = sort_int_array(int_array);
-
-	
-
+	string_array = get_string_array(argv);
+	int_count = 0;
+	int_array = get_int_array(string_array, &int_count);
+	stack_a = get_original_stack_a(int_array, int_count);
+	if (stack_a == (void *) 0)
+	{
+		free_array(string_array);
+		free(int_array);
+		exit(1);
+	}
+	int_array = sort_int_array(int_array, int_count);
+	stack_a = simplify_stack_number(stack_a, int_array, int_count);
+	i = 0;
+	while (stack_a != (void *) 0)
+	{
+		ft_printf("stack[%d]->number: %d\n", i, stack_a->number);
+		i++;
+		stack_a = stack_a->next;
+	}
+	free_array(string_array);
+	free(int_array);
+	return (stack_a);
+}
 
 int	main(int argc, char *argv[])
 {

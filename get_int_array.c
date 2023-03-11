@@ -1,40 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_stack.c                                 :+:      :+:    :+:   */
+/*   get_int_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 12:10:55 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/12 08:00:41 by tayou            ###   ########.fr       */
+/*   Created: 2023/03/12 07:36:38 by tayou             #+#    #+#             */
+/*   Updated: 2023/03/12 07:40:46 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*initialize_stack_a(char **argv)
+static int	get_int_count(char **string_array)
 {
-	t_node	*stack_a;
-	t_node	*new_node;
-	char	**string_array;
-	int		i;
+	int	int_count;
+	int	i;
 
-	string_array = get_string_array(argv);
-	if (string_array == 0)
+	i = 0;
+	while (string_array[i] != (void *) 0)
+		i++;
+	int_count = i;
+	return (int_count);
+}
+
+int	*get_int_array(char **string_array, int *int_count)
+{
+	int	*int_array;
+	int	i;
+
+	*int_count = get_int_count(string_array);
+	int_array = (int *) malloc(sizeof(int) * (*int_count));
+	if (int_array == 0)
+	{
+		free_array(string_array);
 		exit(1);
-	stack_a = get_new_node(ft_atoi(string_array[0]));
-	i = 1;
+	}
+	i = 0;
 	while (string_array[i] != (void *) 0)
 	{
-		new_node = get_new_node(ft_atoi(string_array[i]));
-		if (new_node == 0)
-		{
-			free_array(string_array);
-			exit(1);
-		}
-		stack_a = add_node_back(&stack_a, new_node);
+		int_array[i] = ft_atoi(string_array[i]);
 		i++;
 	}
-	free_array(string_array);
-	return (stack_a);
+	return (int_array);
 }

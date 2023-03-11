@@ -11,7 +11,7 @@ SRCS = push_swap.c \
 	   check_exception.c initialize_stack_a.c \
 	   operations.c \
 	   control_node.c \
-	   get_number_array.c ft_atoll.c \
+	   get_string_array.c get_int_array.c ft_atoll.c \
 	   push_swap_utils.c \
 	   free_functions.c
 		

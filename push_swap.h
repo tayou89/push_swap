@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 13:16:43 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/12 07:56:30 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_node		*add_node_back(t_node **stack, t_node *new_node);
 t_node		*add_node_front(t_node **stack, t_node *new_node);
 t_node		*del_node_front(t_node *stack);
 
-char		**get_number_array(char **argv);
+char		**get_string_array(char **argv);
+int			*get_int_array(char **string_array, int *int_count);
 long long	ft_atoll(const char *str);
 
 int			ft_isspace(int c);

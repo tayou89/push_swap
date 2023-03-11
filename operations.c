@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:53:52 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/09 13:26:37 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/12 03:36:33 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	operation_swap(t_node *stack)
 
 void	operation_push(t_node *stack_from, t_node *stack_to)
 {
-	t_node	*head_stack_to;
-
 	if (stack_from == (void *) 0)
 		return ;
 	stack_to = add_node_front(&stack_to, stack_from);

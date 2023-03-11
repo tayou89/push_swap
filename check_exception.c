@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 11:51:37 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/07 14:24:21 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/12 08:05:25 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	check_if_int(char **str)
 	i = 0;
 	while (str[i] != (void *) 0)
 	{
-		number = ft_atoi_longlong(str[i]);
+		number = ft_atoll(str[i]);
 		if (number < int_min || number > int_max)
 			return (0);
 		else
@@ -62,59 +62,31 @@ static int	check_if_int(char **str)
 	return (1);
 }
 
-static int	get_number_count(char **str)
-{
-	int	number_count;
-	int	i;
-
-	i = 0;
-	while (str[i] != (void *) 0)
-		i++;
-	number_count = i;
-	return (number_count);
-}
-
-static int	*fill_number_array(int *number_array, char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != (void *) 0)
-	{
-		number_array[i] = ft_atoi(str[i]);
-		i++;
-	}
-	return (number_array);
-}
-
 static int	check_if_duplicate(char **str)
 {
-	int	number_count;
-	int	*number_array;
+	int	int_count;
+	int	*int_array;
 	int	i;
 	int	j;
 
-	number_count = get_number_count(str);
-	number_array = (int *) malloc(sizeof(int) * number_count);
-	if (number_array == 0)
-		return (0);
-	number_array = fill_number_array(number_array, str);
+	int_count = 0;
+	int_array = get_int_array(str, &int_count);
 	i = 0;
-	while (i + 1 < number_count)
+	while (i + 1 < int_count)
 	{
 		j = i + 1;
-		while (j < number_count)
+		while (j < int_count)
 		{
-			if (number_array[i] == number_array[j])
+			if (int_array[i] == int_array[j])
 			{
-				free(number_array);
+				free(int_array);
 				return (0);
 			}
 			j++;
 		}
 		i++;
 	}
-	free(number_array);
+	free(int_array);
 	return (1);
 }
 
@@ -132,16 +104,16 @@ static int	check_error(char **str)
 
 void	check_exception(int argc, char **argv)
 {
-	char	**number_array;
+	char	**string_array;
 
 	if (argc <= 1)
 		exit(1);
-	number_array = get_number_array(argv);
-	if (check_error(number_array) == 1)
+	string_array = get_string_array(argv);
+	if (check_error(string_array) == 1)
 	{
-		free_array(number_array);
+		free_array(string_array);
 		exit(2);
 	}
 	else
-		free_array(number_array);
+		free_array(string_array);
 }
