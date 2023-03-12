@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 09:39:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/12 07:56:30 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/13 07:11:05 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_node
 {
 	int				number;
+	int				changed;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;

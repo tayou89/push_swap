@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:43:09 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/12 08:10:57 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/13 07:17:35 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_node	*get_new_node(int number)
 	if (new_node == 0)
 		return (0);
 	new_node->number = number;
+	new_node->changed = 0;
 	new_node->prev = (void *) 0;
 	new_node->next = (void *) 0;
 	return (new_node);

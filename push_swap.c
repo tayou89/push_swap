@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:21:31 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/12 08:48:21 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/13 07:35:13 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ t_node	*simplify_stack_number(t_node *stack, int *int_array, int int_count)
 	while (i < int_count)
 	{
 		stack = stack_head;
-		while (stack->number != int_array[i])
+		while (stack->number != int_array[i] || stack->changed == 1)
 				stack = stack->next;
 		stack->number = i;
+		stack->changed = 1;
 		i++;
 	}
 	return (stack_head);
@@ -118,10 +119,19 @@ t_node	*get_stack_a(char **argv)
 int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
+	t_node	*copy_stack;
+	int		i;
 
 	check_exception(argc, argv);
 	stack_a = get_stack_a(argv);
-	
+	copy_stack = stack_a;
+	i = 0;
+	while (copy_stack != (void *) 0)
+	{
+		ft_printf("stack_a[%d]->number: %d\n", i, copy_stack->number);
+		i++;
+		copy_stack = copy_stack->next;
+	}
 	free_list(stack_a);
 	system("leaks push_swap");
 	return (0);
