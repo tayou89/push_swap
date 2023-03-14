@@ -9,7 +9,7 @@ LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SRCS = push_swap.c \
 	   check_exception.c initialize_stack_a.c \
-	   operations.c \
+	   commands.c \
 	   control_node.c \
 	   get_string_array.c get_int_array.c get_stack_a.c ft_atoll.c \
 	   utils_1.c \

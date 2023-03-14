@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:53:52 by tayou             #+#    #+#             */
-/*   Updated: 2023/03/13 13:51:38 by tayou            ###   ########.fr       */
+/*   Updated: 2023/03/14 13:34:08 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	operation_swap(t_node *stack)
+void	command_swap(t_node *stack)
 {
 	int	temp;
 	int	size;
@@ -25,7 +25,7 @@ void	operation_swap(t_node *stack)
 	stack->next->number = temp;
 }
 
-void	operation_push(t_node *stack_from, t_node *stack_to)
+void	command_push(t_node *stack_from, t_node *stack_to)
 {
 	if (stack_from == (void *) 0)
 		return ;
@@ -35,7 +35,7 @@ void	operation_push(t_node *stack_from, t_node *stack_to)
 	stack_from = del_node_front(stack_from);
 }
 
-void	operation_rotate_up(t_node *stack)
+void	command_rotate_up(t_node *stack)
 {
 	int		size;
 	t_node	*new_node;
@@ -50,7 +50,7 @@ void	operation_rotate_up(t_node *stack)
 	stack = del_node_front(stack);
 }
 
-void	operation_rotate_down(t_node *stack)
+void	command_rotate_down(t_node *stack)
 {
 	t_node	*new_node;
 	t_node	*last_node;
